@@ -22,7 +22,15 @@ class HashMap {
     }
 
     private int hash(String key) {
-        return Math.abs(key.hashCode()) % capacity;
+        return Math.abs(hashCode(key)) % capacity;
+    }
+
+    private int hashCode(String key) {
+        int hash = 0;
+        for (int i = 0; i < key.length(); i++) {
+            hash = 31 * hash + key.charAt(i);
+        }
+        return hash;
     }
 
     public void put(String key, String name, boolean value) {
