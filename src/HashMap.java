@@ -38,7 +38,8 @@ class HashMap {
         Entry newEntry = new Entry(key, name, value);
         if (table[index] == null) {
             table[index] = newEntry;
-        } else {
+        }
+        else {
             Entry current = table[index];
             while (current.next != null) {
                 if (current.key.equals(key)) {
