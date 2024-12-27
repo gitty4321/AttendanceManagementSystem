@@ -102,9 +102,9 @@ class HashMap {
         while (current != null) {
             if (current.key.equals(key)) {
                 if (prev == null) {
-                    table[index] = current.next; // Remove first entry in the list
+                    table[index] = current.next;
                 } else {
-                    prev.next = current.next; // Bypass the current entry
+                    prev.next = current.next;
                 }
                 return;
             }

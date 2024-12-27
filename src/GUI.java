@@ -81,10 +81,9 @@ public class GUI {
             if (studentQueue.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Queue is empty!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                String studentId = studentQueue.dequeue(); // Remove and get the front student ID
+                String studentId = studentQueue.dequeue();
                 String studentName = attendanceMap.getName(studentId);
 
-                // Remove the student from the HashMap
                 attendanceMap.remove(studentId);
 
                 outputArea.append("Dequeued and removed: " + studentName + " (ID: " + studentId + ")\n");
