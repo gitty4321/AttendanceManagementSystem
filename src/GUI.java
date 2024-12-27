@@ -83,7 +83,11 @@ public class GUI {
             } else {
                 String studentId = studentQueue.dequeue(); // Remove and get the front student ID
                 String studentName = attendanceMap.getName(studentId);
-                outputArea.append("Dequeued: " + studentName + " (ID: " + studentId + ")\n");
+
+                // Remove the student from the HashMap
+                attendanceMap.remove(studentId);
+
+                outputArea.append("Dequeued and removed: " + studentName + " (ID: " + studentId + ")\n");
             }
         });
 

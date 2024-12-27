@@ -84,4 +84,24 @@ class HashMap {
         }
         return false;
     }
+
+    public void remove(String key) {
+        int index = hash(key);
+        Entry current = table[index];
+        Entry prev = null;
+
+        while (current != null) {
+            if (current.key.equals(key)) {
+                if (prev == null) {
+                    table[index] = current.next; // Remove first entry in the list
+                } else {
+                    prev.next = current.next; // Bypass the current entry
+                }
+                return;
+            }
+            prev = current;
+            current = current.next;
+        }
+    }
+
 }
