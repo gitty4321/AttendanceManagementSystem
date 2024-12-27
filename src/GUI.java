@@ -66,9 +66,9 @@ public class GUI {
             String name = studentNameField.getText().trim();
             String id = studentIdField.getText().trim();
 
-            if (!name.isEmpty() && !name.matches(".*\\d.*") && id.matches("\\d+") && !attendanceMap.containsKey(id)) {
+            if (!name.isEmpty() && !name.matches(".*\\d.*") && id.matches("\\d+")) {
                 studentQueue.enqueue(id);
-                attendanceMap.put(id, true);
+                attendanceMap.put(id, name, true);
                 outputArea.append(name + " (ID: " + id + ") added to queue and marked as present.\n");
                 studentNameField.setText("");
                 studentIdField.setText("");
@@ -82,7 +82,8 @@ public class GUI {
                 JOptionPane.showMessageDialog(frame, "Queue is empty!", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 String studentId = studentQueue.dequeue(); // Remove and get the front student ID
-                outputArea.append("Dequeued: ID " + studentId + "\n");
+                String studentName = attendanceMap.getName(studentId);
+                outputArea.append("Dequeued: " + studentName + " (ID: " + studentId + ")\n");
             }
         });
 
@@ -91,8 +92,9 @@ public class GUI {
 
             if (id.matches("\\d+")) {
                 if (attendanceMap.containsKey(id)) {
+                    String name = attendanceMap.getName(id);
                     boolean present = attendanceMap.get(id);
-                    outputArea.append("ID " + id + " is " + (present ? "present." : "absent.") + "\n");
+                    outputArea.append(name + " (ID: " + id + ") is " + (present ? "present." : "absent.") + "\n");
                 } else {
                     outputArea.append("ID " + id + " has not been marked.\n");
                 }
